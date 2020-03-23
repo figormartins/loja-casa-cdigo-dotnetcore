@@ -12,6 +12,7 @@ namespace CasaDoCodigo.Repositories
     {
         Pedido GetPedido();
         void AddItem(string codigo);
+        UpdateQuantidadeResponse UpdateQuantidade(ItemPedido itemPedido);
     }
     public class PedidoRepository : BaseRepository<Pedido>, IPedidoRepository
     {
@@ -76,6 +77,19 @@ namespace CasaDoCodigo.Repositories
         private void SetPedidoId(int pedidoId)
         {
             contextAccessor.HttpContext.Session.SetInt32("pedidoId", pedidoId);
+        }
+
+        public UpdateQuantidadeResponse UpdateQuantidade(ItemPedido itemPedido)
+        {
+            var itemPedidoDB = dbSet.Where(ip => ip.Id == itemPedido.Id)
+                .SingleOrDefault();
+
+            if (itemPedido != null)
+            {
+                itemPedidoDB.AtualizaQuantidade(itemPedido.Quantidade);
+                contexto.SaveChanges();
+            }
+
         }
     }
 }
