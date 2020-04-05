@@ -4,6 +4,8 @@
 @model CarrinhoViewModel;
 <h3>Meu Carrinho</h3>
 
+<form method="post" asp-action="carrinho"></form>
+
 <div class="panel panel-default">
     <div class="panel-heading">
 
@@ -82,8 +84,8 @@
             <a class="btn btn-success" asp-action="carrossel">
                 Adicionar Produtos
             </a>
-            <a class="btn btn-success" asp-action="resumo">
-                Finalizar Pedido
+            <a class="btn btn-success" asp-action="cadastro">
+                Preencher Cadastro
             </a>
         </div>
     </div>
